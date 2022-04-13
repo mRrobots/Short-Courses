@@ -1,0 +1,9 @@
+right-panel {
+    "backgroundColor": '#003b5c',
+    "width": '65%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'center',
+    justifyContent: 'center'
+}

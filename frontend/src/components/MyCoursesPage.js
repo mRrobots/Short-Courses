@@ -9,7 +9,7 @@ import AddIcon from '@mui/icons-material/Add';
 import MyCourseList from "./MyCourseList";
 import EnrolledAppBar from "./EnrolledAppBar";
 import CreateCourse from "./CreateCourse";
-import {useLocation } from 'react-router-dom';
+import {useLocation,useNavigate } from 'react-router-dom';
 
 
 const fabStyle = {
@@ -28,10 +28,15 @@ function MyCourses(){
 
     const [show, setShow] = useState(false);
     const {state} = useLocation();
-    console.log(state.user)
+    console.log(state.user);
+    const navigate = useNavigate();
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        navigate('/CreateCourse');
+
+        //setShow(true);
+    }
 
     return(
 

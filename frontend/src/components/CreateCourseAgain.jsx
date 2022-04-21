@@ -63,10 +63,10 @@ export default function CreateCourse() {
         </div>
       </Box> */}
       <TabPanel value={value} index={0}>
-        <Firstpanel handletab={handletab}/>
+        <Firstpanel handletab={handletab} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <SecondPanel handletab={handletab}/>
+        <SecondPanel handletab={handletab} courseName="course Name"/>
       </TabPanel>
       
     </Box>

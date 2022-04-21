@@ -8,10 +8,19 @@ import { useDrop } from "react-dnd";
 import "../App.css";
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
+import { getDownloadURL, ref, uploadBytesResumable,uploadBytes,getStorage } from "@firebase/storage"
+import { storage } from "./firebase-config"
+import { async } from '@firebase/util';
 
 const reducer = (state, action) =>{
   switch(action.type){
     case "populateBoard":
+      if (action.payload.length===0){
+        return [{id:0,
+          type:'title',
+          content:''
+          }]
+      }
       return action.payload;
     case "add":
       return [...state,action.payload]
@@ -41,6 +50,11 @@ const tmp_chapters = [
                 id:2,
                 type:"subtitle",
                 content:"Subtitle slide 1 chapter 1"
+              },
+              {
+                id:3,
+                type:'image',
+                src:''
               },
               {
                 id:4,
@@ -246,7 +260,7 @@ const boardSty ={
       maxHeight: '450px',
       border: '3px solid black'}
 
-function SecondPanel({handletab}) {
+function SecondPanel(props) {
 
   const picsRef = useRef();
   const [open, setOpen] = React.useState(false);
@@ -256,6 +270,9 @@ function SecondPanel({handletab}) {
   const [board,despatch] = useReducer(reducer,[])
   const [current,setCurrent] = useState([])
   const [addSlideBool,setAddSlideBool] = useState(false);
+  const [currChap,setCurrChap] = useState('');
+  const [ppictureURL,SetPictureURL] = useState('no pictures to see here');
+  let tmpTitle ='title';
   
 
   const [{ isOver }, drop] = useDrop(() => ({
@@ -382,7 +399,10 @@ function SecondPanel({handletab}) {
     let gg = chapters.filter(chapter=> chapter.id !== curr.id)
 
     setChapters([...gg,newChapter]);
-    despatch({type:'populateBoard',payload:[]});
+    despatch({type:'populateBoard',payload:[{id:0,
+      type:'title',
+      content:''
+      }]});
 
 
   }
@@ -398,6 +418,7 @@ function SecondPanel({handletab}) {
   
   
   const handleClickOpen = () => {
+    tmpTitle=board[0].content;
     setOpen(true);
     
   };
@@ -408,6 +429,7 @@ function SecondPanel({handletab}) {
 
   const handleClose2 = () => {
     var tmp = document.getElementById("ChapterName").value;
+    setCurrChap(tmp);
     if(tmp!==''){
       var temp ={
         id:chapters.length+1,
@@ -425,23 +447,76 @@ function SecondPanel({handletab}) {
     
   }
 
+  
+
   const handleClose = () => {
     var tmp_url = document.getElementById("imageURL").value;
+    if (tmp_url!==''){
+
     despatch({type:"populateBoard",payload: [...board, {
       id:5,
       type:"image",
       url:tmp_url
     }]})
+    document.getElementById("imageURL").value='';
+
+  }
+
+    else{
+      despatch({type:"populateBoard",payload: [...board, {
+        id:5,
+        type:"image",
+        url:ppictureURL
+      }]})
+      
+    }
     setOpen(false);
   };
 
-  const pictureshandler = (e) => {
+  //const pictureRef = useRef();
+
+  const upAnddown = async (chapterName,title,file1)=>{
+    const storage = getStorage()
+    const storageRef1 = ref(storage, `/Courses/${props.courseName}/${chapterName}/${title}/${file1.name}`);
+    await uploadBytes(storageRef1, file1);
+    picsRef.current.value = null
+    let g =  await getDownloadURL(ref(storage, `/Courses/${props.courseName}/${chapterName}/${title}/${file1.name}`));
+    //console.log(g)
+    return g;
+
+  }
+
+  const pictureshandler = async(e, chapterName, title) => {
     e.preventDefault();
     const file1 = e.target[0].files[0];
-    const courseName = e.target[1].value;
+    //const courseName = e.target[1].value;
     console.log(file1);
     handleClose();
     // uploadFiles(file1,file2)
+    //alert(title)
+    // const storageRef1 = ref(storage, `/Courses/${props.courseName}/${chapterName}/${title}/${file1.name}`);
+    // await uploadBytes(storageRef1, file1);
+    const pictureURL = await upAnddown(chapterName,title,file1);
+    console.log(pictureURL)
+    alert(pictureURL);
+    SetPictureURL(pictureURL);
+    console.log(ppictureURL);
+    despatch({type:"populateBoard",payload: [...board, {
+      id:5,
+      type:"image",
+      url:pictureURL
+    }]})
+
+  //   uploadTask1.on("state_changed", (snapshot) => {
+  //     const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes)*100);
+
+  //     setProgress(prog);
+  //   }, 
+  //     (err) => console.log(err),
+  //     () => {
+  //       getDownloadURL(uploadTask1.snapshot.ref).then((url) => console.log(url))
+  //     }
+  //   )
   }
   
   const [outcomes,setOutcomes] = useState([]);
@@ -450,7 +525,7 @@ function SecondPanel({handletab}) {
     <div style={{display: 'flex', flexDirection: 'row'}}>
       <div style={leftDiv}>
         <div style={{display: 'flex', flexDirection: 'row'}}>
-          <IconButton onClick={(event)=>handletab(event,0)}>
+          <IconButton onClick={(event)=>props.handletab(event,0)}>
             <ArrowBack style={{color: 'white'}}/>
           </IconButton>
           <Typography variant="h4">Course Content</Typography>
@@ -626,7 +701,10 @@ function SecondPanel({handletab}) {
                 id="imageURL"
                 />
                 <Typography variant="h6">OR</Typography>
-                <form onSubmit={pictureshandler} >
+                <form onSubmit={(event)=>{
+                  //alert(tmpTitle)
+                  pictureshandler(event,currChap,tmpTitle)
+                }} >
            
                       <div>
                       <input type="file" name="images" id="" required class="form-control"  multiple ref={picsRef}/>
@@ -641,7 +719,6 @@ function SecondPanel({handletab}) {
           </Paper>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
           <Button onClick={handleClose}>Agree</Button>
         </DialogActions>
         </div>
@@ -692,7 +769,8 @@ function SecondPanel({handletab}) {
           <Button onClick={handleClose2}>NEXT</Button>
           <Button onClick={(event)=>{
             document.getElementById("ChapterName").value='';
-            setOpen2(false)}}>CANCEL</Button>
+            setOpen2(false)
+            setOutcomes([])}}>CANCEL</Button>
         </DialogActions>
         </div>
       </Dialog>

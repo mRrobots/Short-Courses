@@ -11,6 +11,7 @@ import Explore from './components/Explore';
 import CreateCourseAgain from './components/CreateCourseAgain';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import MyPortfolio from './components/myProfile/MyPortfolio';
 
 
 
@@ -28,6 +29,7 @@ function App() {
            <Route path='/Enrolled' element={<Enrolled/>}/>
            <Route path='/CreateCourse' element={<CreateCourseAgain/>}/>
            <Route path='/MyCourses' element={<MyCourses/>} />
+           <Route path='/MyPortfolio' element={<MyPortfolio/>} />
            <Route path='/Slides/:id' element={
                       <Grid style={{display: 'flex', flexDirection: 'row',height:'100vh'}}>
                             <Course />

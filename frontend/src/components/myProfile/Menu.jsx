@@ -5,7 +5,7 @@ const Menu = () => {
     return(
         <div style = {MenuStyle}>
             <img src = {Profile} width = {100} height = {100} style = {ProfileSyle}/>
-            <div style = {UserNameStyle}>User Name</div>
+            <div style = {UserNameStyle}>Username</div>
             <div style = {AboutCourses}>
                 <div style = {CourseTag}>MyCourses 12</div>
                 <div style = {CourseTag}>Enrolled 8</div>

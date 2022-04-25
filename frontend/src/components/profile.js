@@ -8,7 +8,7 @@ function Profile(props){
 
     return(
         <div>
-            <h4><FaUserCircle onClick = {() => {navigator("/MyPortfolio")}}/>{ ' '+ props.name}</h4>
+            <h4 onClick = {() => {navigator("/MyPortfolio")}}><FaUserCircle />{ ' '+ props.name}</h4>
         </div>
     );
 }

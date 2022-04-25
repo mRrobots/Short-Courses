@@ -20,7 +20,7 @@ const OuterBox = {
     height: '150px',
     borderRadius: 5,
     display: 'flex',
-    background: 'white',
+    background: '#edf4f5',
     borderStyle: 'groove',
     flexDirection: 'column',
     minWidth: '20%',
@@ -42,7 +42,7 @@ const InnerInnerBox = {
     flexDirection: 'column',
     width: '90%',
     height: '40%',
-    background: 'white'
+    background: '#edf4f5'
 }
 
 export default CourseHelper;

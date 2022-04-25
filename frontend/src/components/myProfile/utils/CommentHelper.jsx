@@ -5,9 +5,6 @@ import ML from "./ml.png";
 const CommentHelper = () =>{
     return(
         <div style = {CommentBodyStyle}>
-            <div style = {ImageCompStyle}>
-            <img src = {ML} width = {235} height = {100} />
-            </div>
             <Typography variant="h6" gutterBottom component="div">
                 Machine Learning
             </Typography>
@@ -37,33 +34,21 @@ const CommentBodyStyle = {
     display: 'flex',
     flexDirection: 'column',
     width: '35%',
-    height: '50vh',
-    background: 'white',
+    minWidth: '35%',
+    height: '30vh',
+    background: '#edf4f5',
     margin: 20,
     alignItems: 'center',
-    borderStyle: 'groove',
-    
-
-
+    borderStyle: 'solid',
+    padding: 12,
+    borderColor: '#003b5c',
+    borderRadius: 12
 }
 
-const ImageCompStyle = {
-    display: 'flex',
-    width: '100%',
-    height: '30%',
-    minHeight: '30%', 
-    justifyContent: 'center',
-    alignItems: 'center',
-    background: '#003b5c'
-}
-
-const CourseNameStyle = {
-
-}
 
 const ContentStyle = {
-    height: '50%',
-    minHeight: '50%',
+    height: '70%',
+    minHeight: '70%',
     display: 'flex',
     overflowY: 'scroll',
     padding: 2

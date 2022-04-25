@@ -32,9 +32,13 @@ const ExposeView = () =>{
             <div style = {CommentsStyle}>
                 <CommentHelper/>
                 <CommentHelper/>
+                <CommentHelper/>
+                <CommentHelper/>
+                <CommentHelper/>
+                <CommentHelper/>
                 
             </div>
-        
+                    
         </div>
     )
 }

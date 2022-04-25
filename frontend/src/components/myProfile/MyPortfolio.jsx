@@ -2,7 +2,7 @@ import Menu from './Menu.jsx';
 import Display from './Display.jsx';
 
 const MyPortfolio = () =>{
-
+    
     return(
         <div style = {MyPortfolioStyle}>
             <div className='pin' style = {LeftPanelStyle} >

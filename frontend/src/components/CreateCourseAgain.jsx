@@ -41,7 +41,7 @@ function a11yProps(index) {
 }
 
 export default function CreateCourse() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

@@ -13,6 +13,13 @@ function Login({setSignUP,setLogin,wid,users}) {
   const onSubmit = (values,props) => {
       var check=false;
       console.log(users);
+      const temp2 = {
+        "user_id":values.username,
+        "password":values.password,
+        "first_name":'mosis'
+      }
+      navigate("/Home",{state:{user:temp2}});
+          setLogin(true);
 
 
       // users.map((user) => {

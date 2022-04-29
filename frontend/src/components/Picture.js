@@ -1,9 +1,10 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 import { IconButton,Button,Card } from "@mui/material";
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
 
-function Picture({ id, url,type,handleClickOpen }) {
+function Picture({ id, url,type,handleClickOpen,handleClickOpen3 }) {
 
   const temp = [1]
 
@@ -21,46 +22,42 @@ function Picture({ id, url,type,handleClickOpen }) {
     textAlign: 'center',
     backgroundColor:'#ffffff',
     color: '#003b5c',
+    display: 'flex',
+    flexDirection: 'row',
   }
 
   const h5style = {
     marginTop:"2px",
     marginBottom:"2px",
-    marginLeft:"10px",
-    marginRight:"10px"}
+    marginRight:"10px"
+  }
   
   return (
+
+     
+
       <div ref={drag}>
       {temp.map((current) => {
         if(type==="title"){
-          return <div style={divStyle}><h5 style={h5style}>Title</h5></div>
+          return <div ref={drag} style={divStyle}><h5 style={h5style}><DragIndicatorIcon/>Title</h5></div>
         }
         else if(type==="subtitle"){
-          return <div style={divStyle}><h5 style={h5style}>Subtitle</h5></div>
+          return <div ref={drag} style={divStyle}><h5 style={h5style}><DragIndicatorIcon/>Subtitle</h5></div>
         }
         else if(type==="paragraph"){
-          return <div style={divStyle}><h5 style={h5style}>paragraph</h5></div>
+          return <div ref={drag} style={divStyle}><h5 style={h5style}><DragIndicatorIcon/>paragraph</h5></div>
         }
         else if(type==="image"){
-          return <div style={divStyle}><h5 style={h5style} onClick={handleClickOpen}>Image</h5></div>
+          return <div style={divStyle}><h5 style={{...h5style,marginLeft:'10px'}} onClick={handleClickOpen}>Image</h5></div>
         }
         else if(type==="video"){
-          return <div style={divStyle}><h5 style={h5style}>video</h5></div>
+          return <div style={divStyle} onClick={handleClickOpen3}><h5 style={{...h5style,marginLeft:'10px'}}>video</h5></div>
         }
       })}
        
   
       </div>
     
-
-
-  
-    // <img
-    //   ref={drag}
-    //   src={url}
-    //   width="150px"
-    //   style={{ border: isDragging ? "5px solid pink" : "0px", width:"150px" }}
-    // />
   );
 }
 

@@ -10,16 +10,8 @@ const CommentHelper = () =>{
             </Typography>
             <div style = {ContentStyle}>
                 <Typography variant="body2" gutterBottom>
-                    This is the best Machine Learning Course. nbhbhgxayxgayx
-                    axhabxhaxabyxh
-                    xqgxvqyqgxhq uhxuqxhquh hhushqusyq  uqshqusiqjsqu
-                    qquuhsq  iqdhqjisqj iqsjqoiqkb uqsi9
-                    hsquushuq ijqjhkzl  sxiokxozo qsjiqj
-                    dmwdmwmidiod
-                    sqnijimqidmi
-                    xannqdjqiihqq8d8j
-                    sqisjwdjq8dijwmd
-                    axajiaimx
+                    This is the best Machine Learning Course
+                    
                 </Typography>
             </div>
             <div style = {ActionsStyle}>

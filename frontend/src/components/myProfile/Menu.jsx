@@ -1,7 +1,8 @@
 import Action from "./utils/Action.jsx";
-import Profile from "./utils/profile.png";
+import Profile from "./utils/user.png";
 
 const Menu = () => {
+
     return(
         <div style = {MenuStyle}>
             <img src = {Profile} width = {100} height = {100} style = {ProfileSyle}/>

@@ -15,7 +15,6 @@ jobs:
       - checkout
       - run: cd backend | npm i
       - run: cd frontend | npm i
-      - run: cd frontend | npm run build
   test:
     docker:
       - image: "circleci/node:10"

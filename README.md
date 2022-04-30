@@ -1,6 +1,5 @@
 # DATABASE OVERVIEW 
-![CircleCI](https://img.shields.io/circleci/build/github/Lindokuhle777/Short-Courses/main?style=plastic)
-[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=svg)](https://circleci.com/gh/circleci/circleci-docs)
+[![CircleCI](https://circleci.com/gh/Lindokuhle777/Short-Courses.svg?style=svg)]
 ![APM](https://img.shields.io/apm/v/npm)
 
 ### Tables on the database

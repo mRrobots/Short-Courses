@@ -20,7 +20,7 @@ app.get('/users',
                 res.status(400); //client made a bad request
                 throw err;
             }
-            console.log(results.rows[0]);
+            //console.log(results.rows[0]);
             res.status(202); //client's request was ACCEPTED
 
             //response is a list of users as a JSONArray node
@@ -47,7 +47,7 @@ app.post('/users/register',
             if(err)
             {
               res.status(400); //client made a bad request
-              console.log(err);
+              //console.log(err);
             }
             res.status(201); // USER CREATED
         });
@@ -110,7 +110,7 @@ app.post('/mycourses',(req,res)=>{
     [req.body.user_id],
     (err, result) => {
       if (!err) {
-        console.log(result.rows);
+        //console.log(result.rows);
         res.send(result.rows);
         //res.row have every course
       } else {
@@ -148,18 +148,18 @@ app.post('/enrolled',(req,res)=>{
               if (!err) {
                 data.push(result.rows[0]); //adding all the enrolled course to one json
                 if (i == results.rowCount - 1) {
-                  console.log(data); //send once we done pushing
+                  //console.log(data); //send once we done pushing
                   res.send(data);
                 }
               } else {
-                console.log(err.message);
+                //console.log(err.message);
                 //some error occured
               }
             }
           );
         }
       } else {
-        console.log(err.message);
+        //console.log(err.message);
         //some error occured
       }
     }
@@ -180,7 +180,7 @@ app.post('/CreateCourse',(req,res)=>{
       // res.send("false");
       throw err;
     } else {
-      console.log("1 record inserted" + results);
+      //console.log("1 record inserted" + results);
       res.send("1 record inserted");
       //couerse is created
       //what now :/
@@ -191,7 +191,7 @@ app.post('/CreateCourse',(req,res)=>{
 app.get("/allcourses", (req, res) => {
   pool.query("Select * from courses", (err, result) => {
     if (!err) {
-      console.log(result.rows);
+      //console.log(result.rows);
       res.send(result.rows);
       //res.row have every course
       //loop it ,and get each course info

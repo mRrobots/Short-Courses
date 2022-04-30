@@ -1,0 +1,21 @@
+{
+  "name": "newsdproject",
+  "version": "1.0.0",
+  "description": "We have 3 tables: USERS, COURSES and ENROLLED",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "installbackend": "cd backend | npm i",
+    "installfrontend": "cd frontend | npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lindokuhle777/Short-Courses.git"
+  },
+  "author": "Lindokuhle Mabena",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lindokuhle777/Short-Courses/issues"
+  },
+  "homepage": "https://github.com/Lindokuhle777/Short-Courses#readme"
+}

@@ -10,7 +10,7 @@ function Home(props) {
             </Row>
             <Row className="justify-content-md-center">
                 <Col xs lg="2">  </Col>
-                <Col md="auto"><h2>EXPLORE</h2></Col>
+                <Col md="auto"><h2 data-testid="explore">EXPLORE</h2></Col>
                 <Col xs lg="2">  </Col>
             </Row>
             <Row>
